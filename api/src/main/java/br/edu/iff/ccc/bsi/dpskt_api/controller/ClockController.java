@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.iff.ccc.bsi.dpskt_api.entities.Clock;
+import br.edu.iff.ccc.bsi.dpskt_api.exception.ClockNotFoundException;
+import br.edu.iff.ccc.bsi.dpskt_api.exception.PendingClockExistsException;
 import br.edu.iff.ccc.bsi.dpskt_api.service.ClockService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -51,7 +53,7 @@ public class ClockController {
     var clocks = clockService.findClockByUser(discordId);
 
     if (clocks.isEmpty()) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No clocks found for this user");
+      throw new ClockNotFoundException("No clocks found for this user");
     }
 
     return ResponseEntity.status(HttpStatus.OK).body(clocks);
@@ -65,7 +67,7 @@ public class ClockController {
       @Parameter(description = "Dados do novo registro") @Valid @RequestBody Clock clockModel) {
 
     if (clockService.hasPendingClock(clockModel.getUser().getDiscordId())) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already has a pending clock");
+      throw new PendingClockExistsException("User has a pending clock");
     }
 
     var clockCreated = clockService.createClock(clockModel);
@@ -83,7 +85,7 @@ public class ClockController {
     var clockUpdated = clockService.patchClock(id, clockModel);
 
     if (clockUpdated == null) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Clock not found");
+      throw new ClockNotFoundException("No clocks found");
     }
 
     return ResponseEntity.status(HttpStatus.OK).body(clockUpdated);
@@ -99,7 +101,7 @@ public class ClockController {
     var clockDeleted = clockService.deleteClock(id);
 
     if (clockDeleted == null) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Clock not found");
+      throw new ClockNotFoundException("No clocks found");
     }
 
     return ResponseEntity.status(HttpStatus.OK).body(clockDeleted);

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.iff.ccc.bsi.dpskt_api.entities.User;
+import br.edu.iff.ccc.bsi.dpskt_api.exception.UserAlreadyExistsException;
+import br.edu.iff.ccc.bsi.dpskt_api.exception.UserNotFoundException;
 import br.edu.iff.ccc.bsi.dpskt_api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -73,7 +75,7 @@ public class UserController {
             @Parameter(description = "Dados do novo usuário") @Valid @RequestBody User userModel) {
 
         if (userService.userExists(userModel.getDiscordId())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already exists");
+            throw new UserAlreadyExistsException("Usuário já existe com ID do discord: " + userModel.getDiscordId());
         }
 
         var userCreated = userService.createUser(userModel);
@@ -91,7 +93,7 @@ public class UserController {
             @Parameter(description = "Dados do usuário a serem atualizados") @Valid @RequestBody User userModel) {
 
         if (!userService.userExists(userModel.getDiscordId())) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            throw new UserNotFoundException("Usuário não encontrado com ID do discord: " + discordId);
         }
 
         var updatedUser = userService.patch(discordId, userModel);
@@ -108,7 +110,7 @@ public class UserController {
             @PathVariable @Parameter(description = "ID do discord") String discordId) {
 
         if (!userService.userExists(discordId)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            throw new UserNotFoundException("Usuário não encontrado com ID do discord: " + discordId);
         }
 
         var deletedUser = userService.deleteUser(discordId);

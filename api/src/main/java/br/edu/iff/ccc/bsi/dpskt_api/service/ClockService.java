@@ -32,6 +32,10 @@ public class ClockService {
         return clockRepository.save(clockModel);
     }
 
+    public boolean clockExists(UUID id) {
+        return clockRepository.findById(id) != null;
+    }
+
     public Clock patchClock(UUID id, Clock clockModel) {
         Optional<Clock> clock = clockRepository.findById(id);
 

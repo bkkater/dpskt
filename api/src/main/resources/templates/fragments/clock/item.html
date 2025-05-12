@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div
+      th:fragment="clockItem(clock)"
+      class="relative grid grid-cols-1 justify-between gap-6 rounded border-2 border-[#29292E] bg-[#0a0a0a] p-6 pb-4 transition-colors hover:border-[#168ac5] hover:bg-[#0e0e0e] sm:flex sm:grid-cols-2 md:py-8"
+    >
+      <div class="flex justify-between sm:flex-col sm:justify-center">
+        <span class="font-bold">Entrada</span>
+        <span th:text="${#temporals.format(clock.startAt, 'dd/MM/yyyy HH:mm')}">
+          -
+        </span>
+      </div>
+
+      <div class="flex justify-between sm:flex-col sm:justify-center">
+        <span class="font-bold">Saída</span>
+        <span
+          th:text="${clock.endAt != null ? #temporals.format(clock.endAt, 'dd/MM/yyyy HH:mm') : '--'}"
+        >
+          -
+        </span>
+      </div>
+
+      <div class="flex justify-between sm:flex-col sm:justify-center">
+        <span class="font-bold">Tempo Total</span>
+
+        <span
+          th:text="${clock.endAt != null ? @durationUtils.formatDuration(clock.startAt, clock.endAt) : 'Em andamento...'}"
+        ></span>
+      </div>
+
+      <hr class="my-0 w-full border-[#1e1e22] sm:hidden" />
+
+      <div class="flex items-center">
+        <form th:action="@{'/clock/delete/' + ${clock.id}}" method="post">
+          <input type="hidden" name="_method" value="delete" />
+          <button
+            type="submit"
+            class="w-auto bg-transparent p-2 shadow-none hover:bg-neutral-800 rounded"
+          >
+            <img th:replace="fragments/ui/icon :: icon('trash',  '22')" />
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div
+      th:fragment="clockList(${clocks})"
+      class="mt-6 flex flex-col gap-2 animate-fadeIn"
+    >
+      <h1 class="text-2xl">Meus pontos</h1>
+
+      <p class="text-neutral-500">
+        Aqui você vai poder visualizar e gerenciar seus pontos registrados no
+        sistema
+      </p>
+
+      <div
+        th:if="${clocks != null and #arrays.length(clocks) > 0}"
+        class="grid gap-6 mt-6 grid-cols-1 lg:grid-cols-2"
+      >
+        <div th:each="clock : ${clocks}">
+          <div th:replace="fragments/clock/item :: clockItem(${clock})"></div>
+        </div>
+      </div>
+
+      <p
+        th:if="${clocks == null or #arrays.length(clocks) == 0}"
+        class="mt-4 text-white flex gap-2 bg-[#202024] rounded p-4 w-fit"
+      >
+        <img
+          th:replace="fragments/ui/icon :: icon('alert-circle',  '22')"
+          alt="Imagem de ponto vazio"
+        />
+
+        Você ainda não registrou nenhum ponto
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div
+      class="mb-8 flex items-center gap-6"
+      th:fragment="playerSupport(player)"
+    >
+      <h2 class="animate-fromTop text-2xl font-normal">
+        Olá,
+        <span class="ml-2 font-bold" th:text="${player.name}"></span>
+      </h2>
+
+      <a
+        th:replace="fragments/ui/link :: link('https://discord.gg/qydNNVaH9G', 'Ir para servidor', 'border border-[#6B52AE] text-[#e1e1e6] hidden md:flex transition-transform hover:scale-105 ml-auto',  'external-link')"
+      />
+
+      <button
+        th:replace="fragments/ui/button :: button('Comunicar problema', 'border border-[#168ac5] text-[#e1e1e6] hidden md:flex transition-transform hover:scale-105', 'alert-triangle', 'button')"
+      />
+    </div>
+  </body>
+</html>

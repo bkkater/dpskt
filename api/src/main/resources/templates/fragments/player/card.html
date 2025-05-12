@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div
+      th:fragment="playerCard(player)"
+      class="md:justify-normal bg-texture relative flex w-full animate-fromLeft flex-col gap-6 rounded border-2 border-[#29292E] bg-[#202024] bg-cover px-4 py-8 sm:flex-row sm:justify-between md:gap-16 md:px-8"
+    >
+      <img
+        th:src="@{/images/dpskt.png}"
+        width="120px"
+        alt="DPSKT"
+        priority
+        class="mt-5 self-center md:mt-0"
+      />
+
+      <div class="flex justify-center gap-2 sm:flex-col">
+        <span
+          class="font-bold"
+          th:text="${#strings.replace(player.role,'_',' ')}"
+        />
+
+        <span th:text="${player.playerId} + ' ' + ${player.name}" />
+      </div>
+
+      <form
+        th:action="@{/clock/register}"
+        method="post"
+        class="flex items-center"
+      >
+        <button
+          th:replace="fragments/ui/button :: button(${player.statusClock ? 'Fechar Ponto' : 'Abrir Ponto'}, 'my-auto w-full bg-[#121214] transition-colors hover:bg-[#0a0a0a] sm:w-52', 'clipboard', 'submit')"
+        />
+      </form>
+
+      <div
+        class="sm:left-none absolute top-5 left-5 flex items-center justify-end gap-2 self-center sm:right-5 lg:static lg:flex-1"
+      >
+        <img th:replace="fragments/ui/icon :: icon('power',  '18')" />
+
+        <span
+          th:text="${player.statusClock ? 'Em serviço' : 'Fora de serviço'}"
+        />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <a
+      href="${href}"
+      th:class="'flex gap-2 h-12 items-center font-medium shadow justify-center rounded px-6 ' + ${classes}"
+      th:fragment="link(href, text, classes, icon)"
+    >
+      <img
+        th:if="${icon}"
+        th:src="@{'/icons/' + ${icon} + '.svg'}"
+        alt="Ícone"
+        width="18px"
+      />
+
+      <span th:text="${text}"></span>
+    </a>
+  </body>
+</html>

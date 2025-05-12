@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div
+      class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 animate-fadeIn"
+      th:fragment="tabs(tabs)"
+    >
+      <ul class="flex flex-wrap -mb-px">
+        <li
+          th:each="tab : ${tabs}"
+          class="-mx-5 mt-8 flex w-screen shrink-0 border-b border-[#2B2D42] text-lg md:mx-0 md:w-auto"
+        >
+          <a
+            class="p-3 flex-1 flex align-end justify-center gap-2 md:w-60 md:flex-none"
+            th:href="${tab.url}"
+            th:classappend="${tab.active} ? ' border-b border-[#168ac5]' : ''"
+            th:attr="aria-current=${tab.active} ? 'page' : null"
+          >
+            <img th:replace="fragments/ui/icon :: icon(${tab.icon},  '24')" />
+            <span th:text="${tab.title}" class="text-[#e1e1e6]" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div th:fragment="select(label, name, options)">
+      <div
+        class="rounded h-12 flex items-center px-3 border-2 border-transparent bg-[#121214] focus-within:border-[#084551] focus-within:ease-in focus-within:duration-300 gap-2"
+      >
+        <label th:for="${name}" class="hidden" th:text="${label}"></label>
+        <select
+          th:id="${name}"
+          th:name="${name}"
+          class="w-full bg-transparent text-[#E1E1E6] outline-none"
+        >
+          <option
+            th:each="option : ${options}"
+            th:value="${option}"
+            th:text="${#strings.replace(option,'_',' ')}"
+            class="text-neutral-500 bg-[#121214]"
+          ></option>
+        </select>
+      </div>
+    </div>
+  </body>
+</html>

@@ -8,10 +8,14 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Embeddable
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Player {
 
   @NotBlank(message = "The name cannot be blank")
@@ -29,4 +33,13 @@ public class Player {
   private Role role = Role.RECRUTA;
 
   private Boolean statusClock = false;
+
+  public Player(String name, String playerId, Role role, Corporation corporation) {
+    this.name = name;
+    this.playerId = playerId;
+    this.role = role;
+    this.corporation = corporation;
+    this.statusClock = false;
+  }
+
 }

@@ -28,11 +28,7 @@
 
 # :closed_book: Propósito do projeto
 
-O objetivo ao criar este projeto foi desenvolver conhecimentos e estudar as mudanças nas tecnologias Next 13, Tanstack Table V8 e explorar algumas utilidades do Tailwind CSS. Este projeto será contínuo e servirá como um Proof of Concept (PoC) para experimentar e testar novas bibliotecas de acordo com o aprendizado adquirido.
-
-Também me desafiei a desenvolver o backend em Node.js e MongoDB, buscando aprofundar meu conhecimento nessas tecnologias e garantir uma integração eficiente com o frontend do projeto.
-
-Para o futuro, planejo implementar testes e refatorar componentes para adotar o Composition Pattern, visando aprimorar a qualidade e a escalabilidade do projeto.
+O objetivo ao criar este projeto foi desenvolver conhecimentos em Java Spring Boot para a disciplina de Desenvolvimento Web do Instituto Federal Fluminense.
 
 # :computer: Tecnologias
 
@@ -41,27 +37,25 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 <details>
   <summary>Front-end</summary>
 
-- [React](https://pt-br.reactjs.org/)
-- [Next.js](https://nextjs.org/)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Thymeleaf](https://www.thymeleaf.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Next-Auth](https://next-auth.js.org/)
-- [React Hook Form](https://react-hook-form.com/)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Date-fns](https://date-fns.org/)
-- [Yup](https://www.npmjs.com/package/yup)
-- [Ant Design (Antd)](https://ant.design/)
 
 </details>
 
 <details>
   <summary>Back-end</summary>
 
+- [Java Spring Boot](https://spring.io/projects/spring-boot)
+- [Spring Security](https://spring.io/projects/spring-security)
+- [Spring Data JPA](https://spring.io/projects/spring-data)
+- [H2 Database](https://www.h2database.com/html/main.html)
+
 </details>
 
 # :rocket: Funcionalidades
 
 - **Registro de Tempo de Patrulha**: Os policiais podem utilizar comandos específicos para iniciar e encerrar seu tempo de patrulha, registrando assim as horas trabalhadas.
-- **Relatórios**: Os policiais com cargos administrativos podem gerar relatórios com os registros de tempo de patrulha dos policiais, facilitando sua análise e gestão.
 - **Gestão de Pessoal**: Os policiais com cargos administrativos têm acesso a comandos para gerenciar os policiais, como promoção, rebaixamento e exoneração.
 
 # :lipstick: Figma
@@ -73,6 +67,13 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 ```bash
 # Clone o Repositório
 $ git clone https://github.com/bkkater/dpskt.git
+# Instale as dependências do front-end
+$ cd api/src/main/frontend
+$ npm install
+# Gere os estilos estáticos
+$ npm run watch
+#Execute o back-end em Java
+$ ./mvnw spring-boot:run
 ```
 
 ### 📱 Run Project

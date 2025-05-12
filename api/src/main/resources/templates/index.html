@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head :: head}"></head>
+
+  <body class="bg-[#121214]">
+    <div
+      th:replace="~{fragments/ui/header :: header(${username}, ${avatar})}"
+    />
+
+    <div class="mx-auto md:container px-5 py-10">
+      <div th:replace="fragments/player/support :: playerSupport(${player})" />
+
+      <div th:replace="fragments/player/card :: playerCard(${player})" />
+
+      <div th:replace="fragments/ui/tabs :: tabs(${tabs})"></div>
+
+      <div th:replace="fragments/clock/list :: clockList(${clocks})"></div>
+    </div>
+  </body>
+</html>

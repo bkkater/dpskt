@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head :: head}"></head>
+
+  <body class="bg-abstract flex items-center justify-center animate-fadeIn">
+    <p class="mt-6 text-sm text-neutral-600 absolute top-0 right-0 px-6">
+      Logado como: <strong th:text="${username}"></strong>
+    </p>
+
+    <div class="m-auto w-100 rounded border border-[#29292E] bg-[#202024] p-10">
+      <h1 class="mb-2 text-start text-2xl">Registro</h1>
+      <p class="mb-8 text-start text-neutral-500">
+        Insira informações do seu personagem
+      </p>
+
+      <form
+        th:action="@{/user/register}"
+        method="post"
+        class="flex flex-col gap-4"
+      >
+        <div
+          th:replace="~{fragments/form/text-input :: input('Nome', 'player.name')}"
+        ></div>
+
+        <div
+          th:replace="~{fragments/form/text-input :: input('ID', 'player.playerId')}"
+        ></div>
+
+        <div
+          th:replace="~{fragments/form/select-input :: select('Cargo', 'player.role', ${roles})}"
+        ></div>
+
+        <div
+          th:replace="~{fragments/form/select-input :: select('Corporação', 'player.corporation', ${corporations})}"
+        ></div>
+
+        <button
+          th:replace="fragments/ui/button :: button('Cadastrar', 'bg-[#168ac5] text-[#E1E1E6] hover:bg-[#084551] transition-colors mt-2', 'check-square', 'submit')"
+        ></button>
+      </form>
+    </div>
+  </body>
+</html>

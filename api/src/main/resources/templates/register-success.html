@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head :: head}"></head>
+
+  <body class="bg-abstract flex items-center justify-center animate-fadeIn">
+    <p class="mt-6 text-sm text-neutral-600 absolute top-0 right-0 px-6">
+      Logado como: <strong th:text="${username}"></strong>
+    </p>
+
+    <div
+      class="flex flex-col items-center justify-center space-y-6 w-100 rounded border border-[#29292E] p-8 bg-[#202024] rounded animate-fromTop"
+    >
+      <h1 class="text-2xl font-bold text-white text-center">
+        Registrado com sucesso!
+      </h1>
+
+      <div class="bg-[#121214] rounded-full p-6">
+        <img th:replace="fragments/ui/icon :: icon('check-square',  '48')" />
+      </div>
+
+      <p class="text-lg text-neutral-200 text-center">
+        Bem-vindo(a),
+        <strong th:text="${username}" class="font-semibold"></strong>
+      </p>
+
+      <a
+        href="/"
+        class="w-full bg-[#121214] transition-colors hover:bg-[#0a0a0a] rounded h-12 flex items-center justify-center font-medium shadow px-6 gap-2"
+      >
+        Ir para a Home
+        <img th:replace="fragments/ui/icon :: icon('arrow-right',  '18')" />
+      </a>
+    </div>
+  </body>
+</html>

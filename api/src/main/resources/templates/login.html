@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head :: head}"></head>
+
+  <body class="bg-abstract flex items-center justify-center animate-fadeIn">
+    <main
+      class="m-auto flex w-96 animate-fadeIn flex-col gap-8 rounded border border-[#29292E] bg-[#202024] p-10"
+    >
+      <h1 class="text-5xl text-center">DPSKT</h1>
+
+      <p class="text-center text-neutral-500">
+        Faça login para acessar a plataforma
+      </p>
+
+      <a
+        href="/oauth2/authorization/discord"
+        class="flex gap-2 h-12 items-center font-medium shadow justify-center rounded px-6 text-[#e1e1e6] hover:scale-1 w-full bg-[#5865f2] hover:bg-[#5059bb] transition-colors"
+        >Entrar com discord</a
+      >
+    </main>
+  </body>
+</html>

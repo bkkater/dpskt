@@ -729,20 +729,8 @@ h1,
   width: 100vw;
 }
 
-.min-w-\[520px\] {
-  min-width: 520px;
-}
-
 .min-w-full {
   min-width: 100%;
-}
-
-.min-w-\[540px\] {
-  min-width: 540px;
-}
-
-.min-w-\[600px\] {
-  min-width: 600px;
 }
 
 .flex-1 {
@@ -1400,14 +1388,6 @@ h1,
     width: auto;
   }
 
-  .md\:min-w-\[600px\] {
-    min-width: 600px;
-  }
-
-  .md\:min-w-\[500px\] {
-    min-width: 500px;
-  }
-
   .md\:flex-none {
     flex: none;
   }
@@ -1443,10 +1423,6 @@ h1,
 
   .lg\:flex-1 {
     flex: 1 1 0%;
-  }
-
-  .lg\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-2 {

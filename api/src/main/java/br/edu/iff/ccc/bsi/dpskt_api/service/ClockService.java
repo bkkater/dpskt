@@ -1,6 +1,5 @@
 package br.edu.iff.ccc.bsi.dpskt_api.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.iff.ccc.bsi.dpskt_api.entities.Clock;
+import br.edu.iff.ccc.bsi.dpskt_api.exception.ClockNotFoundException;
 import br.edu.iff.ccc.bsi.dpskt_api.repository.ClockRepository;
 
 @Service
@@ -43,14 +43,15 @@ public class ClockService {
         return clockRepository.findById(id) != null;
     }
 
-    public Clock patchClock(UUID id, LocalDateTime endAt) {
+    public Clock patchClock(UUID id, Clock clockModel) {
         return clockRepository.findById(id)
                 .map(clock -> {
-                    if (endAt != null)
-                        clock.setEndAt(endAt);
+                    if (clockModel.getEndAt() != null) {
+                        clock.setEndAt(clockModel.getEndAt());
+                    }
                     return clockRepository.save(clock);
                 })
-                .orElse(null);
+                .orElseThrow(() -> new ClockNotFoundException("No clocks found"));
     }
 
     public Optional<Clock> deleteClock(UUID id) {

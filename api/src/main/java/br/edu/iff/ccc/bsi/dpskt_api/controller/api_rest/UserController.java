@@ -1,4 +1,4 @@
-package br.edu.iff.ccc.bsi.dpskt_api.controller;
+package br.edu.iff.ccc.bsi.dpskt_api.controller.api_rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

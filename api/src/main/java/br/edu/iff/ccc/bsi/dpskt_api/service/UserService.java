@@ -1,6 +1,7 @@
 package br.edu.iff.ccc.bsi.dpskt_api.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class UserService {
         return userRepository.findByDiscordId(discordId) != null;
     }
 
-    public User findByDiscordId(String discordId) {
+    public Optional<User> findByDiscordId(String discordId) {
         return userRepository.findByDiscordId(discordId);
     }
 
@@ -32,7 +33,13 @@ public class UserService {
     }
 
     public User patch(String discordId, User userModel) {
-        User user = userRepository.findByDiscordId(discordId);
+        Optional<User> optionalUser = userRepository.findByDiscordId(discordId);
+
+        if (optionalUser.isEmpty()) {
+            return null;
+        }
+
+        User user = optionalUser.get();
 
         if (userModel.getIsAdmin() != null) {
             user.setIsAdmin(userModel.getIsAdmin());
@@ -44,11 +51,11 @@ public class UserService {
             Player player = user.getPlayer();
 
             if (updatedPlayer.getPlayerId() != null) {
-                player.setPlayerId(userModel.getPlayer().getPlayerId());
+                player.setPlayerId(updatedPlayer.getPlayerId());
             }
 
             if (updatedPlayer.getName() != null) {
-                player.setName(userModel.getPlayer().getName());
+                player.setName(updatedPlayer.getName());
             }
 
             if (updatedPlayer.getCorporation() != null) {
@@ -56,11 +63,11 @@ public class UserService {
             }
 
             if (updatedPlayer.getRole() != null) {
-                player.setRole(userModel.getPlayer().getRole());
+                player.setRole(updatedPlayer.getRole());
             }
 
             if (updatedPlayer.getStatusClock() != null) {
-                player.setStatusClock(userModel.getPlayer().getStatusClock());
+                player.setStatusClock(updatedPlayer.getStatusClock());
             }
         }
 
@@ -68,12 +75,13 @@ public class UserService {
     }
 
     public User deleteUser(String discordId) {
-        User user = userRepository.findByDiscordId(discordId);
+        Optional<User> optionalUser = userRepository.findByDiscordId(discordId);
 
-        if (user == null) {
+        if (optionalUser.isEmpty()) {
             return null;
         }
 
+        User user = optionalUser.get();
         userRepository.delete(user);
 
         return user;

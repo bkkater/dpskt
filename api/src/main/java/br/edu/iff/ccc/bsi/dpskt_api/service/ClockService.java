@@ -1,5 +1,6 @@
 package br.edu.iff.ccc.bsi.dpskt_api.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,6 +25,12 @@ public class ClockService {
         return clockRepository.findByUser_DiscordId(discordId);
     }
 
+    public Optional<Clock> findLastPendingClock(String discordId) {
+        return clockRepository.findByUser_DiscordId(discordId).stream()
+                .filter(clock -> clock.getEndAt() == null)
+                .findFirst();
+    }
+
     public boolean hasPendingClock(String discordId) {
         return clockRepository.findByUser_DiscordId(discordId).stream().anyMatch(clock -> clock.getEndAt() == null);
     }
@@ -36,18 +43,14 @@ public class ClockService {
         return clockRepository.findById(id) != null;
     }
 
-    public Clock patchClock(UUID id, Clock clockModel) {
-        Optional<Clock> clock = clockRepository.findById(id);
-
-        if (!clock.isPresent()) {
-            return null;
-        }
-
-        if (clockModel.getEndAt() != null) {
-            clock.get().setEndAt(clockModel.getEndAt());
-        }
-
-        return clockRepository.save(clock.get());
+    public Clock patchClock(UUID id, LocalDateTime endAt) {
+        return clockRepository.findById(id)
+                .map(clock -> {
+                    if (endAt != null)
+                        clock.setEndAt(endAt);
+                    return clockRepository.save(clock);
+                })
+                .orElse(null);
     }
 
     public Optional<Clock> deleteClock(UUID id) {

@@ -122,7 +122,9 @@ public class MainViewController {
     Optional<Clock> openClock = clockService.findLastPendingClock(discordId);
 
     openClock.ifPresent(clock -> {
-      clockService.patchClock(clock.getId(), LocalDateTime.now());
+      Clock clockUpdate = new Clock();
+      clockUpdate.setEndAt(LocalDateTime.now());
+      clockService.patchClock(clock.getId(), clockUpdate);
     });
   }
 

@@ -60,7 +60,7 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 
 # :lipstick: Figma
 
-- [Design](<[https://ant.design/](https://www.figma.com/design/RyMKw2xQLhP633pX8Gd05F/DP?node-id=101-115&t=AbqxyxOxtVPrkooi-1)>)
+- [Design](https://ant.design/](https://www.figma.com/design/RyMKw2xQLhP633pX8Gd05F/DP?node-id=101-115&t=AbqxyxOxtVPrkooi-1)
 
 
 # :construction_worker: Como rodar

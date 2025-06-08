@@ -8,7 +8,7 @@
   
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/bkkater/dpskt?color=6CBAD9&style=for-the-badge">
 
-  <a href="https://github.com/bkkater/dpskt/commits/master">
+  <a href="https://github.com/bkkater/dpskt/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/bkkater/dpskt?color=6CBAD9&style=for-the-badge">
   </a> 
   
@@ -60,7 +60,8 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 
 # :lipstick: Figma
 
-- [Design](<[https://ant.design/](https://www.figma.com/design/RyMKw2xQLhP633pX8Gd05F/DP?node-id=101-115&t=iP8dukPWbkdQ5JfA-1)>)
+- [Design](<[https://ant.design/](https://www.figma.com/design/RyMKw2xQLhP633pX8Gd05F/DP?node-id=101-115&t=AbqxyxOxtVPrkooi-1)>)
+
 
 # :construction_worker: Como rodar
 
